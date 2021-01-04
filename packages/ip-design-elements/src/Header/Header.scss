@@ -1,0 +1,43 @@
+@import '../styles/variables.scss';
+
+.header {
+  height: $spacing * 2.5;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  padding: $spacing * 0.5 $spacing * 0.75;
+  background-color: #0b1f52;
+  transition: padding .225s ease-in-out;
+  color: #fff;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+
+  .header_logo {
+    display: flex;
+    height: $spacing * 2.5;
+    align-items: center;
+    min-width: 300px;
+
+    img {
+      height: 100%;
+      margin-right: $spacing * 0.5;
+    }
+
+    span {
+      line-height: 100%;
+      padding: $spacing * 0.25;
+      margin-left: $spacing * 0.5;
+      min-width: 185px;
+    }
+  }
+
+  .header_navigation {
+    flex: 1;
+  }
+
+  .header_user {
+    flex: 1;
+    max-width: 200px;
+    justify-content: flex-end;
+  }
+}

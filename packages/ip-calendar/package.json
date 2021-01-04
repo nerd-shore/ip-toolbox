@@ -1,0 +1,55 @@
+{
+  "name": "@dns/calendar",
+  "version": "1.2.0",
+  "description": "Ultimate calendar for your React app.",
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
+  "scripts": {
+    "build": "npm run build-lib",
+    "build-lib": "npm run build-tsc && npm run build-sass && npm run copy-css-to-lib",
+    "build-tsc": "node_modules/.bin/tsc",
+    "build-sass": "node_modules/.bin/node-sass src/ -o src/",
+    "clean-build": "rm -rf build",
+    "copy-css-to-lib": "cpx \"./src/**/*.css\" ./build/lib",
+    "xlint": "tslint --exclude **/*.d.ts src/**/*.ts src/**/*.tsx",
+    "prepublishOnly": "npm run build",
+    "test": "npm run test-eslint && npm run test-jest",
+    "test-eslint": "eslint ./src",
+    "test-jest": "jest",
+    "test-jest-coverage": "jest --coverage"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**.{ts,tsx}",
+      "!**/src/index.ts",
+      "!**/src/index.nostyle.ts"
+    ]
+  },
+  "keywords": [
+    "calendar",
+    "date",
+    "date-picker",
+    "month-picker",
+    "react"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@dns/utils": "^0.6.3",
+    "lodash.once": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.2",
+    "react-dom": ">=16.2"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "build/lib/index.d.ts",
+    "build/",
+    "src/"
+  ],
+  "repository": {}
+}

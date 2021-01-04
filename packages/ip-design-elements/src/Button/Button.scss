@@ -1,0 +1,290 @@
+@import '../styles/variables.scss';
+
+.button {
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  align-items: center;
+  position: relative;
+
+  width: auto;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1em;
+  font-weight: 400;
+  box-shadow: none;
+  background-color: transparent;
+  height: 35px;
+  line-height: 35px;
+  //text-transform: uppercase;
+  outline: none;
+  border: none;
+  user-select: none;
+  //border-radius: 2px;
+  transition: all .225s ease-out;
+  cursor: pointer;
+  padding: 0 16px;
+  margin: 0 $spacing / 2;
+  color: $black-light;
+  border-radius: 4px;
+
+  i {
+    position: relative;
+    top: 6px;
+    margin: 0 $spacing / 2;
+    font-size: 1.65em;;
+  }
+
+  .button_ripple {
+    background: $default-ripple-background;
+  }
+
+  &:hover {
+    background-color: $defaultColor-light;
+    box-shadow: none;
+  }
+
+  &.button--white {
+    color: #fff;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $default-ripple-background;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: $defaultColor-darkest;
+      background-color: rgba(255, 255, 255, 0.9);;
+
+      .button_ripple {
+        background: lighten($accent-ripple-background, 30%);
+      }
+    }
+  }
+
+  &.button--accent {
+    color: $accent;
+
+    &:hover {
+      background-color: $accent-light;
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $accent-ripple-background;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: #fff;
+      background-color: $accent;
+
+      .button_ripple {
+        background: lighten($accent-ripple-background, 30%);
+      }
+    }
+  }
+
+  &.button--success {
+    color: $success;
+
+    &:hover {
+      background-color: $success-light;
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $success-ripple-background;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: #fff;
+      background-color: $success;
+
+      .button_ripple {
+        background: lighten($success-ripple-background, 30%);
+      }
+    }
+  }
+
+  &.button--warning {
+    color: $warning;
+
+    &:hover {
+      background-color: $warning-light;
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $warning-ripple-background;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: $defaultColor-darkest;
+      background-color: $warning;
+
+      .button_ripple {
+        background: lighten($warning-ripple-background, 30%);
+      }
+    }
+  }
+
+  &.button--danger {
+    color: $danger;
+
+    &:hover {
+      background-color: $danger-light;
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $danger-ripple-background;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: #fff;
+      background-color: $danger;
+
+      .button_ripple {
+        background: lighten($danger-ripple-background, 30%);
+      }
+    }
+  }
+
+  &.button--primary {
+    color: $primary;
+
+    &:hover {
+      background-color: $defaultColor-light;
+      box-shadow: none;
+    }
+
+    .button_ripple {
+      background: $defaultColor-light;
+    }
+
+    &.button--raised {
+      background-color: rgba(255, 255, 255, 0.9);;
+    }
+
+    &.button--filled {
+      color: #fff;
+      background-color: $primary;
+
+      .button_ripple {
+        background: lighten($defaultColor-light, 30%);
+      }
+    }
+  }
+
+  &.button--raised {
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    line-height: 36px;
+    padding: 0 16px;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    //color: #fff;
+    //background-color: $primary;
+    margin: $spacing / 2;
+
+    &:hover {
+      //background-color: $primary;
+      box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    &.button--wib {
+      padding-left: 0;
+
+      &.button--rounded {
+        i {
+          position: relative;
+          top: 6px;
+          margin: 0 8px;
+          font-size: 1.65em;
+        }
+      }
+    }
+
+    &.button--wia {
+      padding-right: 0;
+
+      &.button--rounded {
+        i {
+          position: relative;
+          top: 6px;
+          margin: 0 8px;
+          font-size: 1.65em;
+        }
+      }
+    }
+  }
+
+  &[disabled] {
+    opacity: .6;
+    pointer-events: none;
+    color: $black-light;
+  }
+
+  &--wib {
+    padding-left: 0;
+
+    &.button--rounded {
+      i {
+        position: relative;
+        top: 6px;
+        margin: 0 8px;
+        font-size: 1.65em;
+      }
+    }
+  }
+
+  &--wia {
+    padding-right: 0;
+
+    &.button--rounded {
+      i {
+        position: relative;
+        top: 6px;
+        margin: 0 8px;
+        font-size: 1.65em;
+      }
+    }
+  }
+
+  &--rounded {
+    border-radius: 16px;
+    padding-left: 0;
+  }
+}
+

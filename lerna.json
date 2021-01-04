@@ -1,0 +1,26 @@
+{
+  "lerna": "3.4.3",
+  "version": "2.3.1",
+  "npmClient": "npm",
+  "npmClientArgs": [
+    "--loglevel verbose",
+    "--stream"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": ["ignored-file", "*.md"],
+      "message": "chore(release): publish",
+      "registry": "https://npm.pkg.github.com"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--loglevel verbose",
+        "--stream",
+        "--no-package-lock"
+      ]
+    }
+  },
+  "useWorkspaces": true,
+  "packages": ["packages/*"]
+}

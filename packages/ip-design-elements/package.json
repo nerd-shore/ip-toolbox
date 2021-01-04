@@ -1,0 +1,38 @@
+{
+  "name": "@dns/toolbox",
+  "version": "0.4.1",
+  "main": "build/lib/index.js",
+  "types": "build/lib/index.d.ts",
+  "files": [
+    "build/lib"
+  ],
+  "scripts": {
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "build": "npm run build-lib && build-storybook",
+    "build-lib": "npm run build-tsc && npm run build-sass && npm run copy-css-to-lib",
+    "build-tsc": "node_modules/.bin/tsc",
+    "build-sass": "node_modules/.bin/node-sass src/ -o src/",
+    "build-storybook": "build-storybook",
+    "clean-build": "rm -rf build",
+    "copy-css-to-lib": "cpx \"./src/**/*.css\" ./build/lib",
+    "lint": "tslint --exclude **/*.d.ts src/**/*.ts src/**/*.tsx"
+  },
+  "repository": "",
+  "author": "Ave <me@aves.site>",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-info": "4.1.1",
+    "@storybook/addon-knobs": "4.1.1",
+    "@storybook/react": "4.1.1",
+    "awesome-typescript-loader": "5.2.1",
+    "babel-core": "6.26.3",
+    "cpx": "1.5.0",
+    "css-loader": "2.0.0",
+    "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "storybook-addon-jsx": "6.0.0",
+    "typescript": "3.2.2"
+  },
+  "dependencies": {
+    "@dns/utils": "0.6.3"
+  }
+}

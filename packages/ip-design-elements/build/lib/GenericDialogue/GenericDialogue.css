@@ -1,0 +1,89 @@
+.dialogue {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity .225s ease-in-out, z-index .225s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .dialogue .dialogue_back-drop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1); }
+  .dialogue .dialogue_container {
+    margin-top: 50px;
+    height: auto;
+    width: auto;
+    transition: margin-top 0.225s cubic-bezier(0.35, 0, 0.25, 1), transform 0.225s cubic-bezier(0.35, 0, 0.25, 1);
+    position: relative; }
+  .dialogue.dialogue--open {
+    z-index: 15;
+    pointer-events: auto;
+    opacity: 1; }
+    .dialogue.dialogue--open .dialogue_container {
+      margin-top: 0; }
+
+.gd {
+  display: block;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 24px;
+  border-radius: 6px;
+  max-height: 90vh;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.87); }
+  .gd--without-offset {
+    padding: 0; }
+  .gd--wf {
+    padding-bottom: 0; }
+  .gd--with-hero {
+    padding: 0; }
+    .gd--with-hero h1 {
+      position: relative;
+      top: -38px;
+      padding-left: 24px; }
+    .gd--with-hero .gd_content {
+      padding: 0 24px 24px 24px; }
+  .gd h1 {
+    color: #63b4eb;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin: 0;
+    display: block; }
+  .gd .gd_hero {
+    height: 265px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    position: relative;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  .gd .gd_content {
+    max-height: calc(90vh - 116px);
+    overflow: hidden;
+    overflow-y: auto; }
+    .gd .gd_content--wf {
+      max-height: calc(90vh - 172px); }
+  .gd .gd_footer {
+    height: 56px;
+    margin-left: -24px;
+    width: calc(100% + 48px);
+    line-height: 56px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px; }

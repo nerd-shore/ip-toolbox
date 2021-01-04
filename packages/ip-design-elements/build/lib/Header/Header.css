@@ -1,0 +1,30 @@
+.header {
+  height: 40px;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  padding: 8px 12px;
+  background-color: #0b1f52;
+  transition: padding .225s ease-in-out;
+  color: #fff;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  display: flex; }
+  .header .header_logo {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    min-width: 300px; }
+    .header .header_logo img {
+      height: 100%;
+      margin-right: 8px; }
+    .header .header_logo span {
+      line-height: 100%;
+      padding: 4px;
+      margin-left: 8px;
+      min-width: 185px; }
+  .header .header_navigation {
+    flex: 1; }
+  .header .header_user {
+    flex: 1;
+    max-width: 200px;
+    justify-content: flex-end; }

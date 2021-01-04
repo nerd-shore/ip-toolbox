@@ -1,0 +1,14 @@
+- (/) make sidebar a module
+- (/) use fragments or arrays to avoid unnecessary divs
+- (/) remove class modules for sass in webpack and use bem
+
+
+- !!!! upgrade ts-loader after upgrading webpack to 4
+  - write separate webpack config for webpack 4 for test reasons
+
+
+- maybe use react
+  https://github.com/jamiebuilds/react-loadable and https://webpack.js.org/guides/code-splitting/
+  => https://github.com/coryhouse/dynamic-import-example
+
+- (x)move all scss files to styles directory
