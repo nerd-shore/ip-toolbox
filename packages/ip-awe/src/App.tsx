@@ -1,58 +1,11 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
+
 import logo from './ave_simple.jpg';
+import { DomObject } from './DomObject';
+import { aDomObject } from './aDomObject';
 
 import './App.css';
-
-interface DomObject {
-  elementType: 'div' | 'strong' | 'img' | 'em' | 'h1' | 'h2' | 'h3' | 'br';
-  value: string;
-  elements?: DomObject[],
-  attributes?: {
-    src: string;
-    title: string;
-  }
-}
-
-const testDomObject: DomObject[] = [
-  {
-    elementType: 'div',
-    value: 'Test',
-    elements: [
-      {
-        elementType: 'strong',
-        value: 'string'
-      }
-    ]
-  },
-  {
-    elementType: 'em',
-    value: '↵',
-    elements: [{
-      elementType: 'br',
-      value: ''
-    }]
-  },
-  {
-    elementType: 'div',
-    value: '',
-    elements: [
-      {
-        elementType: 'em',
-        value: 'hello',
-      },
-      {
-        elementType: 'img',
-        value: 'hello',
-        attributes: { src: 'https://test.com', title: 'hello image'}
-      },
-      {
-        elementType: 'h3',
-        value: 'h3'
-      },
-    ]
-  }
-];
 
 const useDebounce = (callback: any, delay: number) => {
   return useCallback(
@@ -62,22 +15,27 @@ const useDebounce = (callback: any, delay: number) => {
 };
 
 function App() {
-  const [content, setContent] = useState(testDomObject);
-  const [contentEditable, setContentEditable] = useState(true);
-  const debouncedSave = useDebounce((nextValue: any) => handleEditableContentChange(nextValue), 500);
-  const contentRef = useRef<HTMLDivElement | null>(null)
+  const [content, setContent] = useState<any>(aDomObject);
+  const [focused, setFocused] = useState(false);
+  const [contentEditable] = useState(true);
+  const debouncedSave = useDebounce(() => handleEditableContentChange(), 500);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const handleEditableContentChange = (target: any) => {
+  const handleEditableContentChange = () => {
+    const parser = new DOMParser();
     const editorial = contentRef.current;
-    console.log('////', (editorial as any));
-    console.log('////', (editorial as any).firstChild);
-    console.log('////', (editorial as any).children);
-    const data = parseChildren((editorial as any));
+    const doc = parser.parseFromString((editorial as any).innerHTML, 'text/html');
+    const data = parseChildren(doc.body);
+    console.log(doc.body);
 
-    console.log('##########', data);
+    console.log(data);
+
+    setTimeout(() => setContent(data), 200);
+
+    // setContent(data as any);
   }
 
-  const parseChildren = (el: HTMLElement) => {
+  const parseChildren = (el: HTMLElement): DomObject[] | null => {
     if (el.children && el.children.length) {
       const element: any = [];
       Object.keys(el?.children || {}).forEach((i, v) => {
@@ -90,18 +48,27 @@ function App() {
     }
   }
 
-  const parseChildElement = (el: HTMLElement) => {
+  const parseChildElement = (el: HTMLElement): DomObject => {
+    let attributes: {[key in any]: any} | null = null;
+
+    if (Object.keys(el.attributes).length) {
+      attributes = {};
+      Array.prototype.slice.call(el.attributes).forEach(item => {
+        (attributes as any)[item.name] = item.value;
+      });
+    }
+
     return {
-      type: el.localName,
-      value: el.innerText,
-      attributes: el.attributes,
-      children: parseChildren((el as any))
+      attributes: attributes,
+      elements: parseChildren((el as any)),
+      elementType: el.localName as any,
+      value: el.firstChild?.textContent as string | null
     }
   }
 
   const handleDebounce = (evt: any) => {
     evt.preventDefault();
-    debouncedSave(evt.target);
+    debouncedSave();
   }
 
   const parseDomObject = (obj: DomObject) => {
@@ -130,12 +97,20 @@ function App() {
         elem.push(<h3 key={key}>{obj.value}{children}</h3>);
         break;
       case 'img':
-        elem.push(<img key={key} src={obj?.attributes?.src} title={obj?.attributes?.title} alt={obj?.attributes?.title}/>);
+        elem.push(<img key={key} src={obj?.attributes?.src} title={obj?.attributes?.title} alt={obj?.attributes?.alt}/>);
         break;
       default:
         break;
     }
     return elem;
+  }
+
+  const handleFocus = () => {
+    console.log('focused');
+    if (focused) {
+      handleEditableContentChange();
+    }
+    setFocused(!focused);
   }
 
   return (
@@ -145,8 +120,11 @@ function App() {
         <p>
           NerdShore's IP-AWE (Awesome Wysiwyg Editor)
         </p>
-        <div contentEditable={contentEditable} onKeyUp={handleDebounce} ref={contentRef}>
-          {content.map(i => (parseDomObject(i)))}
+        {
+          focused ? (<div><button>B</button><button>I</button><button>Image</button></div>) : null
+        }
+        <div contentEditable={contentEditable} ref={contentRef} onFocus={handleFocus} onBlur={handleFocus}>
+          {content ? content.map((i: any) => (parseDomObject(i))) : null}
         </div>
       </header>
     </div>

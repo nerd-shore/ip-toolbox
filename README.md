@@ -1,27 +1,38 @@
-## Monorepo for IAS front-ends
+## Monorepo for NerdShore node libraries
 
 This repository is meant to accumulate the steadily growing count of front-ends for easier package maintainability.
 
 To support all this we use [lerna](https://lernajs.io)
 
-#### Current IAS packages
+#### Current NerdShore packages
 
-- carrier-cockpit (cc)
-- code-table-management (ctms)
-- gsp-frontend (gsp)
+- ip-api
+- ip-awe
+- ip-calendar
+- ip-common-styles
+- ip-contextual-modules
+- ip-design-elements
+- ip-load-more
+- ip-renderJSON
+- ip-renderXML
+- ip-redux-service-worker
+- ip-redux-store-configuration
+- ip-redux-store-modules
+- ip-tslint-config
+- ip-utils
 
 #### Set-Up
 
 ```bash
-npm install --global lerna yarn
-yarn install
-yarn bootstrap
+npm install --global lerna
+npm install
+npm run bootstrap
 ```
 
 #### Start
 
 ```bash
-yarn start:${package_name_shortcut}
+npm run start:${package_name_shortcut}
 ```
 
 #### Workspaces
@@ -29,13 +40,13 @@ yarn start:${package_name_shortcut}
 If workspaces don't work out-of-the-box perform
 
 ```bash
-yarn config set workspaces-experimental true
+npm run config set workspaces-experimental true
 ```
 
 #### To bump versions
 
 ```bash
-yarn upgrade-interactive --latest
+npm run upgrade-interactive --latest
 ```
 
 #### To add a new node module via yarn 
@@ -43,7 +54,7 @@ yarn upgrade-interactive --latest
 This will add the package to the workspace
 
 ```bash
-yarn add ${package_name} -W
+npm run add ${package_name} -W
 ```
 
 Add ```-D``` in case for devDependencies
@@ -51,17 +62,17 @@ Add ```-D``` in case for devDependencies
 #### Build a specific package
 
 ```bash
-yarn build:${package_name_shortcut}
+npm run build:${package_name_shortcut}
 ```
 
 #### Run e2e tests for a certain package
 
 ```bash
-yarn e2e:${package_name_shortcut}
+npm run e2e:${package_name_shortcut}
 ```
 
 #### Create version files for all packages
 
 ```bash
-yarn buildversion
+npm run buildversion
 ```
