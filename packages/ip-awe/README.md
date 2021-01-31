@@ -1,1 +1,1 @@
-## NerdShore's IP-AWE (Awesome Wysiwyg Editor)
+## NerdShore's AWS (Awesome WYSIWYG Editor)

@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+  ip-awe-fe:
+    image: ip-awe.fe
+    hostname: ip-awe.fe
+    build:
+      context: front-end
+      dockerfile: Dockerfile
+      args:
+        GITHUB_PACKAGE_TOKEN: dae82b059628a3d9a06b71ede1b85ca94fc7c006
+    ports:
+      - 4501:4501
+    depends_on:
+      - ip.sso_mock
+    networks:
+      - ip_network
+
+  ip-awe-be:
+    image: ip-awe.be
+    hostname: ip-awe.be
+    build:
+      context: server
+      dockerfile: Dockerfile
+      args:
+        RDS_CA_FILE_PATH: https://dummytext.com/dt-1.0.min.js
+    ports:
+      - 4500:4500
+    depends_on:
+      - wip.sso_mock
+      - mongodb
+    networks:
+      - wip_network
+
+  ip.sso_mock:
+    image: ip.sso_mock
+    hostname: ip.sso_mock
+    environment:
+      - ENVIRONMENT=local
+    ports:
+      - '4005:4005'
+    networks:
+      - ip_network
+
+  mongodb:
+    image: mongo
+    hostname: ip.mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=fa-orders
+    ports:
+      - 27017:27017
+    command: mongod --noauth
+    networks:
+      - ip_network
+
+networks:
+  ip_network:
+    driver: bridge

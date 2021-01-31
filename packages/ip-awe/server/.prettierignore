@@ -1,0 +1,11 @@
+**/.cache/**
+**/dist/**
+*.sh
+.gitignore
+.eslintignore
+.eslintrc.js
+jest.config.js
+.prettierignore
+.env*
+Dockerfile
+src/app-secrets

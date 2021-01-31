@@ -1,0 +1,10 @@
+node_modules
+.idea
+dist
+
+# secrets
+src/app-secrets/kafka-secret
+*.properties
+*.p12
+.env
+.eslintcache
